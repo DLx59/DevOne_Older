@@ -1,33 +1,69 @@
-$navbar-background-color: #333;
+$navbar-background-color: #0d0d0d;
 $navbar-text-color: #fff;
 $navbar-link-color: #fff;
-$navbar-link-hover-color: #ccc;
+$navbar-link-hover-color: #373737;
 
 .navbar {
-  background-color: $navbar-background-color;
   color: $navbar-text-color;
   display: flex;
   align-items: center;
   padding: 10px;
 
-  .navbar-brand {
-    font-weight: bold;
-    margin-right: 20px;
+  .navbar-logo {
+    color: black;
+    font-family: 'Roboto-Medium', sans-serif;
+    font-size: 24px;
   }
 
-  .navbar-nav {
-    list-style: none;
+  .navbar-menu {
     display: flex;
+    margin-left: auto;
 
-    .nav-item {
-      margin-right: 10px;
+    .navbar-menu__flinks a,
+    .navbar-menu__llink a {
+      color: $navbar-link-color;
+      line-height: 22px;
+      font-size: 14px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-      .nav-link {
-        color: $navbar-link-color;
-        text-decoration: none;
+    .navbar-menu__flinks {
+      display: flex;
+      background-color: $navbar-background-color;
+      border-radius: 10px;
+      padding: 0 28px;
+
+      div {
+        margin-right: 10px;
+
+        a {
+          border-radius: 6px;
+          margin: 10px 4px;
+          padding: 8px 18px;
+          font-weight: 400;
+
+          &:hover {
+            background-color: $navbar-link-hover-color;
+          }
+        }
+      }
+    }
+
+    .navbar-menu__llink {
+      margin-left: 4px;
+
+      a {
+        font-family: 'Roboto-Medium', sans-serif;
+        border-radius: 10px;
+        padding: 18px 26px;
+        background: linear-gradient(90deg, #0e576b 50%, #0a3f4c 0) 100%;
+        background-size: 200% 100%;
+        transition: background-position .6s cubic-bezier(.16,1,.3,1);
 
         &:hover {
-          color: $navbar-link-hover-color;
+          background-position: 0;
         }
       }
     }

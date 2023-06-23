@@ -3,17 +3,17 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './component/main/app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavbarComponent} from './component/navbar/navbar.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome'
+import { HeroComponent } from './component/hero/hero.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    HeroComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FontAwesomeModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
