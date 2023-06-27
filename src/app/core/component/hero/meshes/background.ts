@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { MeshBasicMaterial } from 'three';
 // @ts-ignore
 import fragment from '../shaders/grid/fragment.glsl';
 // @ts-ignore

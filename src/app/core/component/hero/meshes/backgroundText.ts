@@ -10,7 +10,7 @@ export function addText(text: string, scene: Scene): void {
     // Create text geometry
     const textGeometry = new TextGeometry(text, {
       font: font,
-      size: 1,
+      size: 0.75,
       height: 0.001,
       curveSegments: 12,
       bevelEnabled: false,
@@ -24,7 +24,7 @@ export function addText(text: string, scene: Scene): void {
     // Create a mesh with the geometry and material
     mesh = new Mesh(textGeometry, textMaterial);
 
-    const scale = (1.2 * window.innerWidth) / 951;
+    const scale = (0.6 * window.innerWidth) / 951;
 
     // Scale and position the text mesh
     mesh.scale.set(scale, scale, scale);

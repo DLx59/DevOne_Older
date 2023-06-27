@@ -11,10 +11,9 @@ void main() {
     vec3 I = normalize(worldPosition - uCameraPosition);
     vec3 R = reflect(I, worldNormal);
 
-    vec2 textUV = vec2((vWorldPosition.x + 1.0) / 2.0, (vWorldPosition.y + 1.0) / 2.0);
-    vec3 reflectColor = texture2D(iChannel0, textUV).rgb;
+    vec3 reflectColor = texture2D(iChannel0, vec2(0.5) - 0.5 * R.xy / R.z).rgb;
 
-    float zoomFactor = 0.8;
+    float zoomFactor = 0.99;
 
     // Adjust refractive indices for a smaller chromatic dispersion
     float refractiveIndexR = 1.02;

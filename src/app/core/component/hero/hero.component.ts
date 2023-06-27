@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { createBackground } from './meshes/background';
-import { addText } from './meshes/text';
-import { createDiamond } from './meshes/diamond';
+import { addText } from './meshes/backgroundText';
+import { createDevText } from './meshes/devText';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 @Component({
   selector: 'app-hero',
@@ -11,7 +11,10 @@ import { createDiamond } from './meshes/diamond';
   styleUrls: ['./hero.component.scss'],
 })
 export class HeroComponent implements AfterViewInit {
-  ngAfterViewInit() {
+  @ViewChild('heroEffect', { static: true })
+  heroEffectRef!: ElementRef<HTMLDivElement>;
+
+  async ngAfterViewInit() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -25,18 +28,20 @@ export class HeroComponent implements AfterViewInit {
       antialias: true,
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
+
     // link canvas to html id
-    const heroSection = document.getElementById('hero-section');
-    heroSection!.appendChild(renderer.domElement);
+    const heroEffectContainer = this.heroEffectRef.nativeElement;
+    const canvas = renderer.domElement;
+    heroEffectContainer.appendChild(canvas);
 
     camera.position.z = 5;
+    // const orbits = new OrbitControls(camera, renderer.domElement);
+    scene.add(createBackground());
 
-    const background = createBackground();
-    scene.add(background);
+    addText('Création de site internet et\ncommunication digitale', scene);
 
-    addText('DEV', scene);
-    const diamond = createDiamond();
-    scene.add(diamond.mesh);
+    const devText = await createDevText();
+    scene.add(devText.mesh);
 
     const renderTargetSize = 1024;
     const renderTarget = new THREE.WebGLRenderTarget(
@@ -57,20 +62,19 @@ export class HeroComponent implements AfterViewInit {
 
     function animate() {
       requestAnimationFrame(animate);
-
       // Hide the glass object
-      diamond.mesh.visible = false;
-
+      devText.mesh.visible = false;
+      devText.update();
       // Render the scene to the WebGLRenderTarget
       renderer.setRenderTarget(renderTarget);
       renderer.render(scene, camera);
 
       // Restore the renderer's target and make the glass object visible again
       renderer.setRenderTarget(null);
-      diamond.mesh.visible = true;
+      devText.mesh.visible = true;
 
-      diamond.update(renderTarget.texture, camera);
-      updateDiamondRotation();
+      devText.update(renderTarget.texture, camera);
+      updateDevTextRotation(); // Correction : Appel de la fonction updateDevTextRotation()
       renderer.render(scene, camera);
     }
 
@@ -82,11 +86,20 @@ export class HeroComponent implements AfterViewInit {
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(2);
+
+      // const heroSection = document.getElementById('hero-section');
+      // const width = heroSection!.offsetWidth;
+      // const height = heroSection!.offsetHeight;
+      //
+      // camera.aspect = width / height;
+      // camera.updateProjectionMatrix();
+      // renderer.setSize(width, height);
+      // renderer.setPixelRatio(window.devicePixelRatio);
     }
 
     window.addEventListener('resize', onWindowResize);
 
-    function updateDiamondRotation() {
+    function updateDevTextRotation() {
       const maxRotationDegres = 30;
       let targetRotationX = map(
         mouse.y,
@@ -104,10 +117,10 @@ export class HeroComponent implements AfterViewInit {
       );
 
       let lerpFactor = 0.1;
-      diamond.mesh.rotation.x +=
-        (targetRotationX - diamond.mesh.rotation.x) * lerpFactor;
-      diamond.mesh.rotation.y +=
-        (targetRotationY - diamond.mesh.rotation.y) * lerpFactor;
+      devText.mesh.rotation.x +=
+        (targetRotationX - devText.mesh.rotation.x) * lerpFactor;
+      devText.mesh.rotation.y +=
+        (targetRotationY - devText.mesh.rotation.y) * lerpFactor;
     }
   }
 }
