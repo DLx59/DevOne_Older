@@ -31,7 +31,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/script/particles/particles.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,7 +95,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/script/particles/particles.js"
+            ]
           }
         }
       }

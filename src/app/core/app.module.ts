@@ -4,6 +4,7 @@ import {AppComponent} from './component/main/app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavbarComponent} from './component/navbar/navbar.component';
 import { HeroComponent } from './component/hero/hero.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -11,10 +12,11 @@ import { HeroComponent } from './component/hero/hero.component';
     NavbarComponent,
     HeroComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgOptimizedImage
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

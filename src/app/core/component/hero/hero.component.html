@@ -1,6 +1,26 @@
-<section class="hero">
-  <div class="hero-content">
-    <h1 class="hero-title">Bienvenue sur notre site</h1>
-    <p class="hero-description">Découvrez nos dernières créations</p>
+<section id="particles-container" class="container hero">
+  <div class="row">
+    <div class="col hero-content">
+      <h1 class="hero-title">CRÉATION DE SITE INTERNET ET D’APPLICATION MOBILE</h1>
+      <p class="hero-description">Vous recherchez un développeur expérimenté pour la création d’un site internet ou
+        d’une application mobile ?</p>
+      <form>
+        <div class="contact-field-input">
+          <label class="contact-form-label" for="phone-number">Numéro de téléphone</label>
+          <input placeholder="Numéro de téléphone" class="input" type="text" id="phone-number" name="phone-number"
+                 [pattern]="phonePattern">
+        </div>
+        <div class="contact-field-checkbox">
+          <input type="checkbox" id="accept-rules" name="accept-rules">
+          <label for="phone-number">J'accepte que mon numéro de téléphone soit utilisé dans le cadre de la demande de
+            rappel.</label>
+        </div>
+        <button class="btn-primary-outline" type="submit">Être rappelé</button>
+      </form>
+    </div>
+    <div class="col hero-content">
+      <img ngSrc="assets/images/developpeur.svg"
+           alt="Création de site internet, création d'application mobile, formation wordpress" priority="" fill="">
+    </div>
   </div>
 </section>
