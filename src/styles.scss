@@ -23,14 +23,3 @@ a {
 body {
   font-family: Roboto-Regular, sans-serif;
 }
-
-canvas {
-  position: fixed;
-  top: 80px;
-  left: 0;
-  cursor: grab;
-}
-
-canvas:active {
-  cursor: grabbing;
-}

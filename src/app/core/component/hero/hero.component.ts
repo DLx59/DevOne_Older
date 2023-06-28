@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewEncapsulation} from '@angular/core';
 import * as THREE from 'three';
 import BackfaceMaterial from './backface-material/backface-material';
 import RefractionMaterial from './refraction-material/refraction-material';
@@ -9,6 +9,7 @@ import loadModel from './utils/model-loader';
   selector: 'app-hero',
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HeroComponent implements OnInit {
   private renderer: THREE.WebGLRenderer;
@@ -35,7 +36,7 @@ export class HeroComponent implements OnInit {
     this.velocity = 0;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.animate = this.animate.bind(this);
     this.resize = this.resize.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -48,7 +49,7 @@ export class HeroComponent implements OnInit {
       dpr: devicePixelRatio || 1,
     };
 
-    this.setup();
+    await this.setup();
 
     window.addEventListener('mousedown', this.handleMouseDown);
     window.addEventListener('mousemove', this.handleMouseMove);
@@ -91,10 +92,10 @@ export class HeroComponent implements OnInit {
       this.vp.height * this.vp.dpr
     );
 
-    const tex = await loadTexture('../../../../../assets/images/rectbg.jpg');
+    const texture = await loadTexture('../../../../../assets/images/rectbg.jpg');
     this.quad = new THREE.Mesh(
       new THREE.PlaneBufferGeometry(),
-      new THREE.MeshBasicMaterial({ map: tex as THREE.Texture })
+      new THREE.MeshBasicMaterial({ map: texture as THREE.Texture })
     );
     this.quad.layers.set(1);
     this.quad.scale.set(this.vp.height * 2, this.vp.height, 1);
@@ -107,9 +108,8 @@ export class HeroComponent implements OnInit {
     });
 
     this.backfaceMaterial = new BackfaceMaterial(this);
-
-    const sphere = new THREE.SphereBufferGeometry(2, 64, 64);
-    const box = new THREE.BoxBufferGeometry(2, 2, 2);
+    new THREE.SphereBufferGeometry(2, 64, 64);
+    new THREE.BoxBufferGeometry(2, 2, 2);
     this.cube = new THREE.Object3D();
     this.mesh = this.cube;
 
@@ -174,10 +174,17 @@ export class HeroComponent implements OnInit {
   }
 
   resize() {
+    // this.vp.width = window.innerWidth;
+    // this.vp.height = window.innerHeight;
     this.vp.width = window.innerWidth;
-    this.vp.height = window.innerHeight;
+    this.vp.height = this.elementRef.nativeElement.querySelector('.hero').clientHeight;
 
     this.renderer.setSize(this.vp.width, this.vp.height);
+    this.envFbo.setSize(this.vp.width * this.vp.dpr, this.vp.height * this.vp.dpr);
+    this.backfaceFbo.setSize(this.vp.width * this.vp.dpr, this.vp.height * this.vp.dpr);
+
+    this.quad.scale.set(this.vp.height * 2, this.vp.height, 1);
+
     this.envFbo.setSize(
       this.vp.width * this.vp.dpr,
       this.vp.height * this.vp.dpr
