@@ -1,0 +1,13 @@
+$primary: #0a3f4c;
+$secondary: #2ea3f2;
+$ternary: #00b7cc;
+$quaternary: #00cde1;
+$dark: #002328;
+$light: #F3F3F3;
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+$navbar-toggler-focus-width: 0;
+$btn-focus-box-shadow : none;

@@ -1,70 +1,168 @@
-$navbar-background-color: #0d0d0d;
-$navbar-text-color: #fff;
-$navbar-link-color: #fff;
-$navbar-link-hover-color: #373737;
+@import "../../../../styles/variables";
+@import "bootstrap/scss/mixins/breakpoints";
 
-.navbar {
-  color: $navbar-text-color;
-  display: flex;
-  align-items: center;
-  padding: 10px;
+$border-bottom-style: 1px solid rgba(0, 0, 0, .03);
 
-  .navbar-logo {
-    color: black;
-    font-family: 'Roboto-Medium', sans-serif;
-    font-size: 24px;
-  }
+header {
+  nav.navbar {
+    button.navbar-toggler {
+      border: none;
 
-  .navbar-menu {
-    display: flex;
-    margin-left: auto;
+      &.not-navbar-collapse,
+      &.is-navbar-collapse {
+        i:before {
+          transition: opacity 0.5s ease;
+        }
+      }
 
-    .navbar-menu__flinks a,
-    .navbar-menu__llink a {
-      color: $navbar-link-color;
-      line-height: 22px;
-      font-size: 14px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-    }
+      &.not-navbar-collapse {
+        i {
+          font: normal normal normal 22px/1 FontAwesome;
 
-    .navbar-menu__flinks {
-      display: flex;
-      background-color: $navbar-background-color;
-      border-radius: 10px;
-      padding: 0 28px;
+          &:before {
+            content: "\f00d";
+            animation: fade-in-longer 0.5s forwards;
+          }
+        }
+      }
 
-      div {
-        margin-right: 10px;
+      &.is-navbar-collapse {
+        i {
+          font: normal normal normal 22px/1 FontAwesome;
 
-        a {
-          border-radius: 6px;
-          margin: 10px 4px;
-          padding: 8px 18px;
-          font-weight: 400;
+          &:before {
+            content: "\f0c9";
+            opacity: 0;
+            animation: fade-in 0.5s forwards;
+          }
 
           &:hover {
-            background-color: $navbar-link-hover-color;
+            color: $primary;
           }
         }
       }
     }
 
-    .navbar-menu__llink {
-      margin-left: 4px;
+    .navbar-collapse {
+      @include media-breakpoint-down('lg') {
+        margin-top: 3%;
+
+        &.show {
+          .nav-item {
+            border-bottom: $border-bottom-style;
+          }
+
+          .dropdown {
+            .dropdown-menu {
+              width: auto;
+              padding: inherit;
+              margin-top: inherit;
+
+              li {
+                border-bottom: $border-bottom-style;
+
+                &:first-child {
+                  border-top: $border-bottom-style;
+                }
+
+                &:last-child {
+                  border-bottom: none;
+                }
+              }
+
+              a.dropdown-item {
+                padding: 1%;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .dropdown-menu {
+      //@include media-breakpoint-down('lg') {
+        //max-height: 0;
+        //overflow: hidden;
+        //transition: max-height 1s ease;
+        //
+        //&.not-dropdown-collapse {
+        //  max-height: 0;
+        //}
+        //
+        //&.is-dropdown-collapse {
+        //  max-height: 500px;
+        //}
+      //}
+    }
+
+    li.nav-item {
+      font-family: Roboto-SemiBold, sans-serif;
 
       a {
-        font-family: 'Roboto-Medium', sans-serif;
-        border-radius: 10px;
-        padding: 18px 26px;
-        background: linear-gradient(90deg, #0e576b 50%, #0a3f4c 0) 100%;
-        background-size: 200% 100%;
-        transition: background-position .6s cubic-bezier(.16,1,.3,1);
+        color: black;
 
         &:hover {
-          background-position: 0;
+          color: $primary;
+
+          span {
+            transition: all .2s ease-in-out;
+            border-bottom: 2px solid #0a3f4c;
+            padding-bottom: 5px;
+          }
         }
+      }
+
+      &.dropdown {
+        > a.nav-link:after {
+          content: '\f078';
+          font: normal normal normal 10px/1 FontAwesome;
+          vertical-align: middle;
+          margin-left: 5px;
+          position: relative;
+          top: -1px;
+          border: none;
+        }
+
+        ul.dropdown-menu {
+          margin-top: 20px;
+          background-color: $light;
+          border: none;
+          border-radius: 0;
+          width: 340px;
+          padding: 20%;
+
+          .dropdown-item {
+            padding: 3%;
+
+            &:hover {
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fade-in-longer {
+      0% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: .75;
+      }
+
+      100% {
+        opacity: 1;
       }
     }
   }

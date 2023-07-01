@@ -1,13 +1,57 @@
-<header class="navbar">
-  <span href="/" class="navbar-logo">DevOne</span>
-  <nav class="navbar-menu">
-    <div class="navbar-menu__flinks">
-      <div><a href="#">Accueil</a></div>
-      <div><a href="#">Services</a></div>
-      <div><a href="#">Références</a></div>
-    </div>
-    <div class="navbar-menu__llink">
-      <a href="#">Contact</a>
+<header>
+  <nav class="navbar sticky-top navbar-expand-lg bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img alt="Logo" class="logo-image" height="49" ngSrc="assets/images/DevOne_webmaster_logo.svg" width="70">
+      </a>
+      <button (click)="toggleNavbarCollapse()" [ngClass]="[ navbarIsCollapse ? 'is-navbar-collapse' : 'not-navbar-collapse']"
+              aria-controls="menu" aria-expanded="false"
+              aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#menu"
+              data-bs-toggle="collapse" type="button">
+        <i></i>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase">
+          <li class="nav-item">
+            <a aria-current="page" class="nav-link active" href="#">
+              <span>Accueil</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a (click)="toggleDropdownCollapse()" aria-expanded="false" class="nav-link dropdown-toggle"
+               data-bs-toggle="dropdown" href="#" role="button">
+              <span>Services</span>
+            </a>
+            <ul [ngClass]="[ dropdownIsCollapse ? 'is-dropdown-collapse' : 'not-dropdown-collapse']" class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#">
+                  <span>Création de site internet</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <span>Refonte de site internet</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <span>Communication digitale</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span>Références</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

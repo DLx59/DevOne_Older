@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FieldPattern} from '../../utils/field-pattern';
 
 declare var particlesJS: any;
+
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.component.html',
@@ -11,7 +12,7 @@ declare var particlesJS: any;
 export class HeroComponent implements OnInit {
   public phonePattern = FieldPattern.phonePattern;
 
-  ngOnInit() {
-    particlesJS.load('particles-container', '../../../../assets/script/particles/particles.json', null);
+  async ngOnInit() {
+    await particlesJS.load('particles-container', '../../../../assets/script/particles/particles.json', null);
   }
 }

@@ -1,26 +1,35 @@
-<section id="particles-container" class="container hero">
-  <div class="row">
-    <div class="col hero-content">
-      <h1 class="hero-title">CRÉATION DE SITE INTERNET ET D’APPLICATION MOBILE</h1>
-      <p class="hero-description">Vous recherchez un développeur expérimenté pour la création d’un site internet ou
-        d’une application mobile ?</p>
-      <form>
-        <div class="contact-field-input">
-          <label class="contact-form-label" for="phone-number">Numéro de téléphone</label>
-          <input placeholder="Numéro de téléphone" class="input" type="text" id="phone-number" name="phone-number"
-                 [pattern]="phonePattern">
+<section class="hero-component" id="particles-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="hero-content">
+          <h1 class="hero-title">Créez un site internet performant et boostez votre marketing digital</h1>
+          <p class="hero-description">Profitez d'un site web sur mesure et d'une expertise en marketing digital pour
+            attirer plus de clients et augmenter votre visibilité en ligne.</p>
+          <form>
+            <div class="contact-field-input">
+              <label class="contact-form-label" for="phone-number">Numéro de téléphone</label>
+              <input [pattern]="phonePattern" class="input" id="phone-number" name="phone-number"
+                     placeholder="Numéro de téléphone"
+                     type="text">
+            </div>
+            <div class="contact-field-checkbox">
+              <input id="accept-rules" name="accept-rules" type="checkbox">
+              <label for="phone-number">J'accepte que mon numéro de téléphone soit utilisé dans le cadre de la demande
+                de
+                rappel.</label>
+            </div>
+            <button class="btn-primary-outline" type="submit">Être rappelé</button>
+          </form>
         </div>
-        <div class="contact-field-checkbox">
-          <input type="checkbox" id="accept-rules" name="accept-rules">
-          <label for="phone-number">J'accepte que mon numéro de téléphone soit utilisé dans le cadre de la demande de
-            rappel.</label>
+      </div>
+      <div class="col-lg-6">
+        <div class="d-flex text-center img-wrap h-100">
+          <img alt="Création de site internet, création d'application mobile, formation wordpress" class="img-fluid m-auto"
+               height="213" ngSrc="assets/images/developpeur.svg"
+               priority="template" width="320">
         </div>
-        <button class="btn-primary-outline" type="submit">Être rappelé</button>
-      </form>
-    </div>
-    <div class="col hero-content">
-      <img ngSrc="assets/images/developpeur.svg"
-           alt="Création de site internet, création d'application mobile, formation wordpress" priority="" fill="">
+      </div>
     </div>
   </div>
 </section>
