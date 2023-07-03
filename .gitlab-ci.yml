@@ -1,0 +1,31 @@
+image: node:latest
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - install_dependencies
+  - build
+  - test
+
+install_dependencies:
+  stage: install_dependencies
+  script:
+    - npm install
+  only:
+    - master
+
+build:
+  stage: build
+  script:
+    - npm run build
+  only:
+    - master
+
+test:
+  stage: test
+  script:
+    - npm run test
+  only:
+    - master
