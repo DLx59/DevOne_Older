@@ -79,22 +79,6 @@ header {
       }
     }
 
-    .dropdown-menu {
-      //@include media-breakpoint-down('lg') {
-        //max-height: 0;
-        //overflow: hidden;
-        //transition: max-height 1s ease;
-        //
-        //&.not-dropdown-collapse {
-        //  max-height: 0;
-        //}
-        //
-        //&.is-dropdown-collapse {
-        //  max-height: 500px;
-        //}
-      //}
-    }
-
     li.nav-item {
       font-family: Roboto-SemiBold, sans-serif;
 
